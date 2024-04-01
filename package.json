@@ -1,0 +1,32 @@
+{
+  "name": "besocial",
+  "version": "1.0.0",
+  "description": "A social media app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanishy/BeSocial.git"
+  },
+  "keywords": [
+    "Social",
+    "media",
+    "connecting",
+    "with",
+    "people"
+  ],
+  "author": "kanhhaiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kanishy/BeSocial/issues"
+  },
+  "homepage": "https://github.com/kanishy/BeSocial#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "node-sass-middleware": "^1.1.0"
+  }
+}
