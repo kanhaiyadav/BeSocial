@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+</head>
+<body>
+    <form action="/post/create" method="post">
+        <label for="post">Post</label>
+        <textarea name="content" id="post" cols="30" rows="3"></textarea>
+        <button type="submit">Post</button>
+    </form>
+
+    <%for(let post of posts){%>
+        <p><%=post.content%>-<%=post.user.name %></p>
+    <% } %>
+</body>
+</html>

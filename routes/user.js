@@ -8,6 +8,6 @@ router.get('/signin', user_controller.signin);
 router.post('/create_user', user_controller.create);
 router.post('/authorize', passport.authenticate('local', {
     failureRedirect: '/user/signin'
-}) ,user_controller.authorize);
+}), user_controller.authorize);
 
 module.exports = router;

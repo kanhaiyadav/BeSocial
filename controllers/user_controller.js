@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Post = require("../models/post");
 module.exports.signup = function (req, res) {
   if (!req.isAuthenticated()) return res.render("signup");
   else res.redirect("back");
