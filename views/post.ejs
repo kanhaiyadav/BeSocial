@@ -13,7 +13,15 @@
     </form>
 
     <%for(let post of posts){%>
-        <p><%=post.content%>-<%=post.user.name %></p>
+        <div>
+            <%=post.content%><br>author:<%=post.user.name %>
+        </div>
+        <form action="/comment/create" method="post">
+            <textarea name="content" cols="50" rows="2"></textarea>
+            <input type="hidden" value="<%=post._id%>" name="post_id">
+            <button type="submit">Post Comment</button>
+        </form>
+        <br>
     <% } %>
 </body>
 </html>

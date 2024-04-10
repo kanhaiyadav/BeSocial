@@ -3,8 +3,8 @@ const Post = require("../models/post");
 module.exports.home = async (req, res) => {
         try {
             posts = await Post.find({}).populate("user");
-            return res.render("post", {
-                posts: posts
+          return res.render("post", {
+            posts: posts
             });
         } catch (err) {
             console.log("error in finding posts", err);
