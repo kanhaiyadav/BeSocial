@@ -9,5 +9,5 @@ router.post('/create_user', user_controller.create);
 router.post('/authorize', passport.authenticate('local', {
     failureRedirect: '/user/signin'
 }), user_controller.authorize);
-
+router.get('/signout', user_controller.signout);
 module.exports = router;

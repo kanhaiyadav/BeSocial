@@ -1,7 +1,6 @@
 const Post = require("../models/post");
 
 module.exports.home = async (req, res) => {
-    if (req.isAuthenticated()) {
         try {
             posts = await Post.find({}).populate("user");
             return res.render("post", {
@@ -11,7 +10,6 @@ module.exports.home = async (req, res) => {
             console.log("error in finding posts", err);
             return;
         }
-  } else return res.render("signin");
 };
 
 

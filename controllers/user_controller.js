@@ -34,3 +34,11 @@ module.exports.create = async function (req, res) {
 module.exports.authorize = (req, res) => {
   res.redirect("/");
 };
+
+module.exports.signout = (req, res) => {
+  req.logout((err) => {
+    if (err) console.log(err);
+    else
+      return res.redirect("/");  
+  });
+}
