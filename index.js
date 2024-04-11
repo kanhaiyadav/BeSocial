@@ -10,8 +10,6 @@ const port = 8000;
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-
-
 app.use(
   sassMiddleware({
     src: "./assets/scss",

@@ -15,6 +15,9 @@
     <%for(let post of posts){%>
         <div>
             <%=post.content%><br>author:<%=post.user.name %>
+            <% if(locals.user && locals.user.id == post.user.id) {%>
+                <a href="/post/destroy/<%=post._id%>">Delete</a>
+            <% } %>
         </div>
         <form action="/comment/create" method="post">
             <textarea name="content" cols="50" rows="2"></textarea>
@@ -22,6 +25,14 @@
             <button type="submit">Post Comment</button>
         </form>
         <br>
+        <% for(comment of post.comments){ %>
+            <div>
+                <%=comment.content%><br>author:<%=comment.user.name %>
+                <% if(locals.user && (locals.user.id == comment.user.id || post.user.id == locals.user.id)) {%>
+                    <a href="/comment/destroy/<%=comment._id%>">Delete</a>
+            <% } %>
+            </div>
+        <% } %>
     <% } %>
 </body>
 </html>
