@@ -1,38 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Post</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./css/post.css" />
 </head>
+
 <body>
-    <form action="/post/create" method="post">
+    <form id="new-post-form" action="/post/create" method="post">
         <label for="post">Post</label>
         <textarea name="content" id="post" cols="30" rows="3"></textarea>
         <button type="submit">Post</button>
     </form>
 
-    <%for(let post of posts){%>
-        <div>
-            <%=post.content%><br>author:<%=post.user.name %>
-            <% if(locals.user && locals.user.id == post.user.id) {%>
-                <a href="/post/destroy/<%=post._id%>">Delete</a>
-            <% } %>
-        </div>
-        <form action="/comment/create" method="post">
-            <textarea name="content" cols="50" rows="2"></textarea>
-            <input type="hidden" value="<%=post._id%>" name="post_id">
-            <button type="submit">Post Comment</button>
-        </form>
-        <br>
-        <% for(comment of post.comments){ %>
-            <div>
-                <%=comment.content%><br>author:<%=comment.user.name %>
-                <% if(locals.user && (locals.user.id == comment.user.id || post.user.id == locals.user.id)) {%>
-                    <a href="/comment/destroy/<%=comment._id%>">Delete</a>
-            <% } %>
+    <div id="posts-container">
+        <%for(let post of posts){%>
+            <div id="post-<%=post._id%>">
+                <div>
+                    <%=post.content%> <br> author:<%=post.user.name%>
+                            <% if(locals.user && locals.user.id==post.user.id) {%>
+                                <a class="delete-link" href="/post/destroy/<%=post._id%>">Delete</a>
+                                <% } %>
+                </div>
+                <form action="/comment/create" method="post">
+                    <textarea name="content" cols="50" rows="2"></textarea>
+                    <input type="hidden" value="<%=post._id%>" name="post_id" />
+                    <button type="submit">Post Comment</button>
+                </form>
+                <br />
+                <div id="comments-container">
+                   <% for(comment of post.comments){ %>
+                    <div>
+                        <%=comment.content%><br />author:<%=comment.user.name %>
+                                <% if(locals.user && (locals.user.id==comment.user.id || post.user.id==locals.user.id))
+                                    {%>
+                                    <a href="/comment/destroy/<%=comment._id%>">Delete</a>
+                                    <% } %>
+                    </div>
+                    <% } %> 
+                </div>
+                
             </div>
-        <% } %>
-    <% } %>
+
+            <% } %>
+    </div>
+
+    <script type="text/javascript" src="./js/post.js"></script>
 </body>
+
 </html>

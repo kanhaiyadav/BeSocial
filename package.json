@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/kanishy/BeSocial#readme",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^5.1.0",
     "cookies-parser": "^1.2.0",
     "ejs": "^3.1.9",
