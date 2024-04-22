@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeSocial</title>
-    <scLript src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></scLript>
+    <scipt src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></scipt>
     <link rel="stylesheet" href="./css/home.css">
     <style>
         body{
             background-color:blanchedalmond;
+        }
+        img{
+            width: 200px;
         }
     </style>
 </head>
@@ -16,9 +19,16 @@
     <% if(flash.success && flash.success.length > 0){ %>
         <p><%= flash.success %></p>
     <% } %>
-    <h1>Hello everyone</h1>
-    <a href="/user/signup"><button type="button">sign up</button></a>
-    <a href="/user/signin"><button type="button">sign in</button></a>
+    <% if(locals.user){ %>
+        <h1>Hello <%=user.name %></h1>
+        <img src="<%=user.avatar %>" alt=""><br>
+    <% }else{%>
+        <h1>Welcome</h1>
+    <% } %>
+    <% if(!locals.user) {%>
+        <a href="/user/signup"><button type="button">sign up</button></a>
+        <a href="/user/signin"><button type="button">sign in</button></a>
+    <% } %>
     <a href="/user/signout"><button type="button">sign out</button></a>
     <a href="/post"><button type="button">Post</button></a>
     <script type="text/javascript" src="./js/home.js"></script>

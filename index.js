@@ -48,6 +48,7 @@ app.use(middleware.setFlash);
 
 app.use(express.static("./assets"));
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use("/", require("./routes/index.js"));
 
 

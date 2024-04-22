@@ -11,10 +11,11 @@
     </style>
 </head>
 <body>
-    <form action="/user/create_user" id="signup" method="post">
+    <form action="/user/create_user" enctype="multipart/form-data" id="signup" method="post">
         <input type="text" name="email" id="email" placeholder="Enter you username...">
         <input type="password" name="password" id="password" placeholder="Create a password...">
         <input type="text" name="name" id="name" placeholder="Enter you name...">
+        <input type="file" name="avatar" id="avatar">
         <button type="submit" form="signup">Sign up</button>
     </form>
 </body>
