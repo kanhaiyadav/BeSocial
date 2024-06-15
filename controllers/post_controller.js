@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const User = require("../models/user.js");
 
 module.exports.home = async (req, res) => {
     try {
@@ -9,7 +10,7 @@ module.exports.home = async (req, res) => {
                 path: "user",
             },
         });
-        return res.render("post", {
+        return res.render("home", {
             posts: posts
         });
     } catch (err) {
@@ -21,19 +22,22 @@ module.exports.home = async (req, res) => {
 
 module.exports.create = async (req, res) => {
     try {
+        console.log(req.user);
+        console.log(req.body);
         let post = await Post.create({
             content: req.body.content,
             user: req.user._id,
         });
-        if (req.xhr) {
-            return res.status(200).json({
-                data: {
-                    post: post
+        let user = await User.findById(req.user._id);
+        user.posts.push(post);
+        user.save();
+        return res.status(200).json({
+            data: {
+                post: post,
+                userName: user.name
                 },
-                message: "Post created successfully",
-            })
-        }
-        return res.redirect("/");
+            message: "Post created successfully",
+        })
     } catch (err) {
         console.log("error in creating post....\n", err);
         res.redirect("back");
@@ -43,13 +47,11 @@ module.exports.create = async (req, res) => {
 module.exports.destroy = async (req, res) => {
     try {
         let post = await Post.findOne({ _id: req.params.id });
+        console.log(post);
         if (post.user == req.user.id) {
             await Post.deleteOne({ _id: post._id });
             await Comment.deleteMany({ post: req.params.id });
-            console.log(req.xhr);
-            if (req.xhr) {
-                console.log(post);
-                return res.status(200).json({
+            return res.status(200).json({
                     data: {
                         post_id: req.params.id
                     },
@@ -60,7 +62,6 @@ module.exports.destroy = async (req, res) => {
                 console.log("hello murkh");
                 return res.redirect("back");
             }
-        }
     } catch (err) {
         console.log(err);
         return;

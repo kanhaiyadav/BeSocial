@@ -5,7 +5,7 @@ const post_controller = require('../controllers/post_controller');
 
 router.get('/', passport.checkAuthenticated,post_controller.home);
 router.post("/create", post_controller.create);
-router.get(
+router.delete(
   "/destroy/:id",
   passport.checkAuthenticated,
   post_controller.destroy

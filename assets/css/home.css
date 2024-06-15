@@ -1,0 +1,158 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  height: 100vh; }
+  body div#head {
+    padding: 20px;
+    background-color: #cfdbf7;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif; }
+    body div#head h2 {
+      margin-top: 0px;
+      color: #002558; }
+    body div#head form {
+      align-items: center;
+      justify-content: center;
+      gap: 10px; }
+      body div#head form textarea {
+        padding: 5px;
+        font-size: 1.2rem;
+        width: 30%;
+        outline: none;
+        border-radius: 10px;
+        box-shadow: 3px 3px 3px 3px rgba(83, 96, 152, 0.2); }
+      body div#head form button {
+        box-shadow: 3px 3px 3px 3px rgba(83, 96, 152, 0.2);
+        display: block; }
+  body div#posts-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: baseline;
+    font-size: 1.2rem; }
+    body div#posts-container div.post {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: ghostwhite;
+      margin: 20px;
+      padding: 20px 30px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      width: 30%;
+      box-shadow: 3px 3px 10px 5px rgba(83, 96, 152, 0.112);
+      max-height: 370px; }
+      body div#posts-container div.post div {
+        width: 100%;
+        overflow: scroll; }
+        body div#posts-container div.post div::-webkit-scrollbar {
+          display: none; }
+        body div#posts-container div.post div div.post-user i {
+          background-color: #002558;
+          padding: 10px;
+          border-radius: 50%;
+          color: white;
+          margin: 10px; }
+        body div#posts-container div.post div div.post-user span {
+          font-weight: 600;
+          color: #050591; }
+        body div#posts-container div.post div p.post-text {
+          max-height: 150px;
+          overflow: scroll;
+          overflow-x: hidden;
+          width: 100%; }
+          body div#posts-container div.post div p.post-text::-webkit-scrollbar {
+            background-color: #c2c2c2;
+            border-radius: 4px;
+            width: 5px; }
+          body div#posts-container div.post div p.post-text::-webkit-scrollbar-thumb {
+            background-color: #002558;
+            border-radius: 8px; }
+        body div#posts-container div.post div a.delete-link {
+          font-size: 1rem;
+          padding: 8px 12px;
+          background-color: #002558;
+          color: white;
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          border-radius: 50%; }
+          body div#posts-container div.post div a.delete-link:hover {
+            transform: scale(1.2); }
+        body div#posts-container div.post div button.comment-btn {
+          background-color: #002558;
+          color: white;
+          border: none;
+          padding: 6px 5px;
+          border-radius: 5px;
+          font-size: 0.9rem;
+          margin: 5px; }
+          body div#posts-container div.post div button.comment-btn:hover {
+            cursor: pointer; }
+          body div#posts-container div.post div button.comment-btn:active {
+            transform: scale(0.96); }
+          body div#posts-container div.post div button.comment-btn i {
+            margin: 0px 10px; }
+            body div#posts-container div.post div button.comment-btn i.fa-caret-down {
+              margin-left: 20px; }
+        body div#posts-container div.post div div.comment-container {
+          display: none; }
+          body div#posts-container div.post div div.comment-container div.comment {
+            margin: 10px 0px;
+            border-radius: 10px;
+            background-color: #d5d5e0; }
+            body div#posts-container div.post div div.comment-container div.comment div {
+              background-color: #002558;
+              display: grid;
+              grid-template-columns: 0.1fr 0.8fr 0.1fr;
+              align-items: center;
+              padding: 5px; }
+              body div#posts-container div.post div div.comment-container div.comment div i {
+                justify-self: center;
+                padding: 7px;
+                border-radius: 50%;
+                background-color: white;
+                color: #002558; }
+              body div#posts-container div.post div div.comment-container div.comment div span {
+                color: white; }
+            body div#posts-container div.post div div.comment-container div.comment p {
+              margin: 5px; }
+      body div#posts-container div.post form {
+        position: relative;
+        bottom: -10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px; }
+        body div#posts-container div.post form textarea {
+          padding: 5px;
+          outline: none;
+          font-size: 0.9rem;
+          border-radius: 5px;
+          border: none;
+          border-bottom: 3px solid #002558;
+          overflow: scroll; }
+          body div#posts-container div.post form textarea::-webkit-scrollbar {
+            display: none; }
+        body div#posts-container div.post form button {
+          font-size: 1.13rem;
+          background-color: transparent;
+          outline: none;
+          border: none;
+          color: #002558; }
+          body div#posts-container div.post form button i:hover {
+            transform: scale(1.2); }
+
+.sub-btn {
+  background-color: #002558;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2rem; }
+  .sub-btn:hover {
+    cursor: pointer; }
+  .sub-btn:active {
+    transform: scale(0.96); }

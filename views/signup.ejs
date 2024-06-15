@@ -3,19 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/482c652b1c.js" crossorigin="anonymous"></script>
     <title>Sign up</title>
-    <style>
-        body{
+        <style>
+        body {
+            height: 100vh;
             background-color: aquamarine;
+            display: grid;
+            place-content: center;
+        }
+
+        form {
+            position: relative;
+            background-color: aliceblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 10px;
+
+        }
+
+        input {
+            font-size: 1.5rem;
+            outline: none;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: rgb(221, 244, 174);
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border: 2px solid aquamarine;
+        }
+
+        label {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: rgb(221, 244, 174);
+            box-sizing: border-box;
+            font-size: 1.3rem;
+            width:100%;
+            position: absolute;
+            top:-70px;
+            border: 2px solid white;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        label:hover{
+            transform: scale(0.97);
+        }
+        input[type="file"]{
+            display: none;
+        }
+        button {
+            font-size: 1.5rem;
+            outline: none;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: aquamarine;
+            cursor: pointer;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        button:focus{
+            transform: scale(0.9);
         }
     </style>
 </head>
 <body>
     <form action="/user/create_user" enctype="multipart/form-data" id="signup" method="post">
-        <input type="text" name="email" id="email" placeholder="Enter you username...">
-        <input type="password" name="password" id="password" placeholder="Create a password...">
-        <input type="text" name="name" id="name" placeholder="Enter you name...">
-        <input type="file" name="avatar" id="avatar">
+        <input type="text" name="email" id="email" placeholder="Enter you username..." autofocus required>
+        <input type="password" name="password" id="password" placeholder="Create a password..." required>
+        <input type="text" name="name" id="name" placeholder="Enter you name..." required>
+        <label for="avatar"><span>Choose profile picture</span><i class="fa-regular fa-image"></i></label>
+        <input type="file" name="avatar" id="avatar" required>
         <button type="submit" form="signup">Sign up</button>
     </form>
 </body>

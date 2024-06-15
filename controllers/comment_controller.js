@@ -7,18 +7,25 @@ module.exports.home = (req, res) => {
 
 module.exports.create = async (req, res) => {
     try {
-        let post = await Post.findOne({ _id: req.body.post_id }); 
+        console.log(req.body);
+        let post = await Post.findOne({ _id: req.body.post_id });
         let comment = await Comment.create({
             content: req.body.content,
             user: req.user._id,
             post: req.body.post_id
         });
+        await comment.populate('user');
         await post.comments.push(comment);
         await post.save();
-        return res.redirect('back');
-        }catch (err) {
-            console.error(err);
-        }
+        return res.status(200).json({
+            data: {
+                comment: comment,
+            },
+            message: "Comment created successfully"
+        });
+    } catch (err) {
+        console.error('error in creating comment', err);
+    }
 }
 
 module.exports.destroy = async (req, res) => {
@@ -31,7 +38,12 @@ module.exports.destroy = async (req, res) => {
                 { $pull: { comments: req.params.id } },
             )
             await Comment.deleteOne({ _id: req.params.id });
-            return res.redirect("back");
+            return res.status(200).json({
+                data: {
+                    comment_id: req.params.id
+                },
+                message: "Comment deleted successfully"
+            })
         }
     } catch (err) {
         console.log(err);

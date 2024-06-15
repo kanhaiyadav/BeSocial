@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 const fs = require("fs"); //   fs.unlinkSync(path.join(__dirname, "..",user.avatar));
 const path = require('path');
 module.exports.signup = function (req, res) {
@@ -47,14 +48,14 @@ module.exports.create = async function (req, res) {
 
 module.exports.authorize = (req, res) => {
     req.flash("success", "Logged in successfully");
-    res.redirect("/");
+    res.redirect("/home");
 };
 
-module.exports.signout = (req, res) => {
-    // res.redirect("/");
+module.exports.signout = async (req, res) => {
     req.logout((err) => {
         if (err) console.log(err);
     });
+    
     req.flash("success", "Logged out successfully");
     res.redirect("/");
 }

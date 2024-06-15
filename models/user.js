@@ -20,7 +20,13 @@ const user_schema = new mongoose.Schema({
     },
   avatar: {
     type: String,
-  }
+    },
+  posts: [
+      {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Post'
+      }
+  ]
 });
 
 const storage = multer.diskStorage({

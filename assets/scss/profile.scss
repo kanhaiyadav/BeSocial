@@ -1,0 +1,35 @@
+
+    body {
+      background-color: blanchedalmond;
+      text-align: center;
+        div#top-container{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: rgb(221, 244, 174);
+            box-sizing: border-box;
+            font-size: 1.3rem;
+            
+        }
+    }
+
+    img {
+      width: 200px;
+      border-radius: 50%;
+    }
+
+    .welcome {
+      font-size: 5rem;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid rgb(134, 48, 48);
+      cursor: pointer;
+    }

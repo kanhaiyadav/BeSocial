@@ -4,6 +4,7 @@ const sassMiddleware = require("node-sass-middleware");
 const db = require("./config/mongoose.js");
 const passport = require("passport");
 const passportLocal = require("./config/passport.js");
+const passportJWT = require("./config/passport-jwt-strategy.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require('connect-flash');
@@ -48,6 +49,13 @@ app.use(middleware.setFlash);
 
 app.use(express.static("./assets"));
 app.use(express.urlencoded({ extended: true }));
+
+
+//***************************************** */
+app.use(express.json()); //This is very necessary if post request is done via fetch api
+//***************************************** */
+
+
 app.use("/uploads", express.static(__dirname+"/uploads"));
 app.use("/", require("./routes/index.js"));
 

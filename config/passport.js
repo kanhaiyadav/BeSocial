@@ -43,9 +43,17 @@ passport.checkAuthenticated = function (req, res, next) {
   else res.redirect("/user/signin");
 };
 
-passport.setAuthenticatedUser = function (req, res, next){
-  if (req.isAuthenticated()) {
-    res.locals.user = req.user;
+passport.setAuthenticatedUser = async function (req, res, next) {
+    console.log("******i am called******");
+    if (req.isAuthenticated()) {
+        console.log("******yessssss i am called******");
+      res.locals.user = await req.user.populate({
+        path: "posts",
+        populate: {
+          path: "comments",
+          },
+      });
+        console.log(res.locals.user);
   }
   next();
 }
