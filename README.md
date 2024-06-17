@@ -30,7 +30,7 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/social-media-web-app.git
+    git clone https://github.com/kanishy/BeSocial.git
     cd social-media-web-app
     ```
 
@@ -56,20 +56,13 @@ To run this project locally, follow these steps:
 - HTML, CSS, JavaScript (Vanilla JS for now, React planned)
     ```
 
-4. **Set up environment variables**:
-    Create a `.env` file in the `backend` directory and add your MongoDB connection string and other environment variables as needed:
-    ```
-    MONGO_URI=your_mongo_db_connection_string
-    JWT_SECRET=your_secret_key
-    ```
-
-5. **Run the backend server**:
+4. **Run the backend server**:
 
 
-6. **Run the frontend server**:
+5. **Run the frontend server**:
 
 
-The app should now be running on `http://localhost:3000`.
+The app should now be running on `http://localhost:8000`.
 
 ## Usage
 
