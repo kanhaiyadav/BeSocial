@@ -49,15 +49,26 @@ body {
         overflow: scroll; }
         body div#posts-container div.post div::-webkit-scrollbar {
           display: none; }
-        body div#posts-container div.post div div.post-user i {
-          background-color: #002558;
-          padding: 10px;
-          border-radius: 50%;
-          color: white;
-          margin: 10px; }
-        body div#posts-container div.post div div.post-user span {
-          font-weight: 600;
-          color: #050591; }
+        body div#posts-container div.post div div.post-user {
+          width: 110%;
+          display: grid;
+          grid-template-columns: 0.06fr 0.54fr 0.2fr 0.2fr;
+          align-items: center; }
+          body div#posts-container div.post div div.post-user i.fa-user {
+            background-color: #002558;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+            margin: 10px; }
+          body div#posts-container div.post div div.post-user span {
+            font-weight: 600;
+            color: #050591; }
+          body div#posts-container div.post div div.post-user div {
+            position: relative;
+            left: -10px; }
+            body div#posts-container div.post div div.post-user div a {
+              text-decoration: none;
+              color: #002558; }
         body div#posts-container div.post div p.post-text {
           max-height: 150px;
           overflow: scroll;

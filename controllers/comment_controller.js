@@ -1,5 +1,7 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
+const Like = require("../models/like");
+const Dislike = require("../models/dislike");
 
 module.exports.home = (req, res) => {
     return res.render('post')
@@ -38,6 +40,8 @@ module.exports.destroy = async (req, res) => {
                 { $pull: { comments: req.params.id } },
             )
             await Comment.deleteOne({ _id: req.params.id });
+            await Like.deleteMany({ on: req.params.id, onModel: "Comment" });
+            await Dislike.deleteMany({ on: req.params.id, onModel: "Comment" });
             return res.status(200).json({
                 data: {
                     comment_id: req.params.id

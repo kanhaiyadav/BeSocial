@@ -12,4 +12,6 @@ router.post('/authorize', passport.authenticate('local', {
     failureRedirect: '/user/signin'
 }), user_controller.authorize);
 router.get('/signout', user_controller.signout);
+router.get('/like', user_controller.like);
+router.get('/dislike', user_controller.dislike);
 module.exports = router;

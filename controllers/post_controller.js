@@ -1,6 +1,8 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const User = require("../models/user.js");
+const Like = require("../models/like");
+const Dislike = require("../models/dislike");
 
 module.exports.home = async (req, res) => {
     try {
@@ -35,7 +37,7 @@ module.exports.create = async (req, res) => {
             data: {
                 post: post,
                 userName: user.name
-                },
+            },
             message: "Post created successfully",
         })
     } catch (err) {
@@ -51,17 +53,19 @@ module.exports.destroy = async (req, res) => {
         if (post.user == req.user.id) {
             await Post.deleteOne({ _id: post._id });
             await Comment.deleteMany({ post: req.params.id });
+            await Like.deleteMany({ on: req.params.id, onModel: "Post" });
+            await Dislike.deleteMany({ on: req.params.id, onModel: "Post" });
             return res.status(200).json({
-                    data: {
-                        post_id: req.params.id
-                    },
-                    message: "Post deleted successfully",
-                });
-            }
-            else {
-                console.log("hello murkh");
-                return res.redirect("back");
-            }
+                data: {
+                    post_id: req.params.id
+                },
+                message: "Post deleted successfully",
+            });
+        }
+        else {
+            console.log("hello murkh");
+            return res.redirect("back");
+        }
     } catch (err) {
         console.log(err);
         return;

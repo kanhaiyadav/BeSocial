@@ -4,6 +4,8 @@ const deleteLinks = document.querySelectorAll(".delete-link");
 const commentForms = document.querySelectorAll('.comment-form');
 const commentDeleteLinks = document.querySelectorAll('.comment-delete-link');
 const comment_btn = document.querySelectorAll(".comment-btn");
+const like_link = document.querySelectorAll(".fa-thumbs-up");
+const dislike_link = document.querySelectorAll(".fa-thumbs-down");
 
 let commentBoxToggle = (event) => {
     event.preventDefault();
@@ -17,6 +19,59 @@ let commentBoxToggle = (event) => {
         top: 300,
         behavior: 'smooth'
     })
+}
+
+let likeToggle = (event) => {
+    if(event.target.classList.contains('fa-regular')){
+        event.target.classList.remove('fa-regular');
+        event.target.classList.add('fa-solid');
+        console.log('regular to solid')
+    }
+    else {
+        event.target.classList.remove('fa-solid');
+        event.target.classList.add('fa-regular');
+        console.log('solid to regular')
+    }
+}
+
+
+
+let like = async (event) => {
+    event.preventDefault();
+    let url = event.target.parentElement.href;
+    let responce = await fetch(url, {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    if (responce.ok) {
+        responce = await responce.json();
+        event.target.parentElement.nextElementSibling.innerText = responce.data.likesCount;
+        likeToggle(event);
+    }
+}
+let dislike = async (event) => {
+    event.preventDefault();
+    let url = event.target.parentElement.href;
+    let responce = await fetch(url, {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    if (responce.ok) {
+        responce = await responce.json();
+        event.target.parentElement.nextElementSibling.innerText = responce.data.dislikesCount;
+        likeToggle(event);
+    }
+}
+
+for (let i = 0; i < like_link.length; i++) {
+    like_link[i].parentElement.addEventListener("click", like);
+}
+for (let i = 0; i < dislike_link.length; i++) {
+    dislike_link[i].parentElement.addEventListener("click", dislike);
 }
 
 let deletePost = async function (event) {
@@ -120,8 +175,22 @@ postForm.addEventListener("submit", async (event) => {
             <div id="post-${responce.data.post._id}" class="post">
 
       <div>
+      
+<div class="post-user">
+            <i class="fa-solid fa-user"></i>
+            <span>@${responce.data.userName}</span>
+            <div>
+                <a href="/user/like/?objectId=${responce.data.post._id}&objectType=Post"><i class="fa-regular fa-thumbs-up"></i></a>
+                <span>${responce.data.post.likesCount}</span>
+            </div>
+            <div>
+                <a href="/user/like/?objectId=${responce.data.post._id}&objectType=Post"><i class="fa-regular fa-thumbs-down"></i></a>
+                <span>
+                    ${responce.data.post.dislikesCount}
+                </span>
+            </div>
+        </div>      
 
-        <div class="post-user"><i class="fa-solid fa-user"></i><span>@${responce.data.userName}</span></div>
 
         <p class="post-text">
           ${responce.data.post.content}
@@ -159,6 +228,16 @@ postForm.addEventListener("submit", async (event) => {
         let cmnt_btn = document.querySelectorAll(".comment-btn");
         for (let i = 0; i < cmnt_btn.length; i++) {
             cmnt_btn[i].addEventListener("click", commentBoxToggle);
+        }
+
+        const l_link = document.querySelectorAll(".fa-thumbs-up");
+        for (let i = 0; i < l_link.length; i++) {
+            l_link[i].parentElement.addEventListener("click", like);
+        }
+
+        const dl_link = document.querySelectorAll(".fa-thumbs-down");
+        for (let i = 0; i < dl_link.length; i++) {
+            dl_link[i].parentElement.addEventListener("click", dislike);
         }
     }
     else {

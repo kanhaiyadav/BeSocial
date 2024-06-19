@@ -25,7 +25,32 @@
 
       <div>
 
-        <div class="post-user"><i class="fa-solid fa-user"></i><span>@<%=post.user.name%></span></div>
+        <div class="post-user">
+            <i class="fa-solid fa-user"></i>
+            <span>@<%=post.user.name%></span>
+            <div>
+                <a href="/user/like/?objectId=<%=post._id %>&objectType=Post">
+                    <%if(post.isLiked){ %>
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <% } else { %>
+                    <i class="fa-regular fa-thumbs-up"></i>
+                    <% } %>
+                </a>
+                <span><%=post.likesCount %></span>
+            </div>
+            <div>
+                <a href="/user/dislike/?objectId=<%=post._id%>&objectType=Post">
+                    <%if(post.isDisliked){ %>
+                        <i class="fa-solid fa-thumbs-down"></i>
+                        <% } else { %>
+                            <i class="fa-regular fa-thumbs-down"></i>
+                            <% } %>
+                </a>
+                <span>
+                    <%=post.dislikesCount %>
+                </span>
+            </div>
+        </div>
 
         <p class="post-text">
           <%=post.content%>
