@@ -53,7 +53,6 @@ passport.setAuthenticatedUser = async function (req, res, next) {
           path: "comments",
           },
       });
-        console.log(res.locals.user);
   }
   next();
 }

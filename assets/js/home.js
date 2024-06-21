@@ -177,17 +177,26 @@ postForm.addEventListener("submit", async (event) => {
       <div>
       
 <div class="post-user">
-            <i class="fa-solid fa-user"></i>
-            <span>@${responce.data.userName}</span>
-            <div>
-                <a href="/user/like/?objectId=${responce.data.post._id}&objectType=Post"><i class="fa-regular fa-thumbs-up"></i></a>
-                <span>${responce.data.post.likesCount}</span>
-            </div>
-            <div>
-                <a href="/user/like/?objectId=${responce.data.post._id}&objectType=Post"><i class="fa-regular fa-thumbs-down"></i></a>
+            
+            <a href="/profile/${responce.data.postUser._id}" target="_blank">
+                <div class="user-avatar">
+                    <img src="${responce.data.postUser.avatar}" alt="">
+                </div>
                 <span>
-                    ${responce.data.post.dislikesCount}
+                        YOU
                 </span>
+            </a>
+            <div>
+                <div>
+                    <i class="fa-solid fa-thumbs-up" style="color: #c7c7c7;font-style: italic;"></i>
+                    <span>${responce.data.post.likesCount}</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-thumbs-down" style="color: #c7c7c7;font-style: italic;"></i>
+                    <span>
+                        ${responce.data.post.dislikesCount}
+                    </span>
+                </div>
             </div>
         </div>      
 
@@ -205,12 +214,6 @@ postForm.addEventListener("submit", async (event) => {
         </div>
 
       </div>
-
-      <form class="comment-form" action="/comment/create" method="post">
-        <textarea name="content" cols="45" rows="1" placeholder="Add a comment ..."></textarea>
-        <input type="hidden" value=${responce.data.post._id} name="post_id" />
-        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-      </form>
 
     </div>
             `

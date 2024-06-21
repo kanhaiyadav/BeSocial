@@ -6,41 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeSocial</title>
   <scipt src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></scipt>
-  <link rel="stylesheet" href="./css/profile.css">
+  <script src="https://kit.fontawesome.com/482c652b1c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../css/profile.css">
 </head>
 
 <body>
-    <% if(flash.success && flash.success.length> 0){ %>
-    <p>
-      <%= flash.success %>
-    </p>
-    <% } %>
-    <div id="profile">
-      <% if(locals.user){ %>
-      <img src="<%=user.avatar %>" alt=""><br>
-      <h1>Hello <%=user.name %>
-      </h1>
-      <% }else{%>
-      <h1 class="welcome">Welcome</h1>
-      <% } %>
-
-      <% if(!locals.user) {%>
-      <a href="/user/signup"><button type="button">sign up</button></a>
-      <a href="/user/signin"><button type="button">sign in</button></a>
-      <% } %>
-
-      <% if(locals.user) {%>
-      <a href="/home"><button type="button">Home</button></a>
-      <a href="/user/signout"><button type="button">sign out</button></a>
-      <% } %>
-    </div>
-
-  <div id="posts-container">
+    <main>
+        <div id="top-container">
+            <div id="avatar">
+                <img src="<%=req_user.avatar %>" alt="">
+            </div>
+            <p>Hey,</p>
+            <p>I'm <span><%=req_user.name %></span></p>
+            <p id="about"><span>"</span>this is the about section here users will write briefly about themselves<span>"</span></p>
+        </div>
+        <div>
+            <nav>
+                <p id="posts">Posts</p>
+                <p id="liked">Liked Posts</p>
+                <p id="disliked">Disliked Posts</p>
+                <p id="saved">Saved Posts</p>
+            </nav>
+            <div id="posts-container" class="post-container">
+                
+            </div>
+            <div id="liked-posts-container" class="post-container">
     
-  </div>
+            </div>
+            <div id="disliked-posts-container" class="post-container">
+    
+            </div>
+            <div id="saved-posts-container" class="post-container">
+    
+            </div>
+        </div>
+    </main>
+    <section>
+    </section>
 
 
-  <script type="text/javascript" src="./js/home.js"></script>
+  <script type="text/javascript" src="../js/profile.js"></script>
 </body>
 
 </html>

@@ -26,7 +26,13 @@ const user_schema = new mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Post'
       }
-  ]
+    ], 
+    friends: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Friendship'
+        }
+    ]
 });
 
 const storage = multer.diskStorage({

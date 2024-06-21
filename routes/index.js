@@ -1,9 +1,10 @@
+const passport = require('../config/passport.js');
 const ecpress = require('express');
 const router = ecpress.Router();
 const home_controller = require('../controllers/home_controller');
 
-router.get('/', home_controller.profile);
-router.get('/home', home_controller.home);
+router.get('/profile/:id', home_controller.profile);
+router.get('/', passport.checkAuthenticated,home_controller.home);
 router.use('/user', require('./user'));
 router.use('/post', require('./post'));
 router.use('/comment', require('./comment'));

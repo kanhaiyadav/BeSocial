@@ -14,4 +14,5 @@ router.post('/authorize', passport.authenticate('local', {
 router.get('/signout', user_controller.signout);
 router.get('/like', user_controller.like);
 router.get('/dislike', user_controller.dislike);
+router.get('/posts', user_controller.getPosts);
 module.exports = router;

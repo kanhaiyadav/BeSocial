@@ -24,8 +24,6 @@ module.exports.home = async (req, res) => {
 
 module.exports.create = async (req, res) => {
     try {
-        console.log(req.user);
-        console.log(req.body);
         let post = await Post.create({
             content: req.body.content,
             user: req.user._id,
@@ -36,7 +34,7 @@ module.exports.create = async (req, res) => {
         return res.status(200).json({
             data: {
                 post: post,
-                userName: user.name
+                postUser: user
             },
             message: "Post created successfully",
         })
@@ -49,7 +47,6 @@ module.exports.create = async (req, res) => {
 module.exports.destroy = async (req, res) => {
     try {
         let post = await Post.findOne({ _id: req.params.id });
-        console.log(post);
         if (post.user == req.user.id) {
             await Post.deleteOne({ _id: post._id });
             await Comment.deleteMany({ post: req.params.id });
@@ -63,7 +60,6 @@ module.exports.destroy = async (req, res) => {
             });
         }
         else {
-            console.log("hello murkh");
             return res.redirect("back");
         }
     } catch (err) {

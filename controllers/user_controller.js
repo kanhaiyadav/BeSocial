@@ -22,14 +22,12 @@ module.exports.create = async function (req, res) {
                 // User.uploadedAvatar(req, res);
                 if (req.file)
                 {
-                    console.log(req.file);
                     await User.create({
                         email: req.body.email,
                         password: req.body.password,
                         name: req.body.name,
                         avatar: User.avatarPath + '/' + req.file.filename,
                     })
-                    console.log("sign up successful");
                     return res.redirect("/user/signin");
                 }
                 else
@@ -50,7 +48,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.authorize = (req, res) => {
     req.flash("success", "Logged in successfully");
-    res.redirect("/home");
+    res.redirect("/");
 };
 
 module.exports.signout = async (req, res) => {
@@ -59,7 +57,7 @@ module.exports.signout = async (req, res) => {
     });
     
     req.flash("success", "Logged out successfully");
-    res.redirect("/");
+    res.redirect("/unknown");
 }
 
 module.exports.like = async (req, res) => {
@@ -144,4 +142,33 @@ module.exports.dislike = async (req, res) => {
             message: "Internal server error"
         })
     }
+}
+
+module.exports.getPosts = async (req, res) => {
+    try {
+        
+        let posts = await Post.find({ user: req.user._id }).populate('user').populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
+        });
+        return res.status(200).json({
+            data: {
+                posts: posts
+            },
+            message: "success"
+        })
+    } catch (err) {
+        console.log("error in finding posts", err);
+        return res.status(500).json({
+            message: "Internal server error"
+        })
+    }
+}
+
+module.exports.dummy = (req, res) => {
+    return res.status(200).json({
+        message: "success"
+    })
 }

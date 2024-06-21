@@ -50,26 +50,50 @@ body {
         body div#posts-container div.post div::-webkit-scrollbar {
           display: none; }
         body div#posts-container div.post div div.post-user {
-          width: 110%;
-          display: grid;
-          grid-template-columns: 0.06fr 0.54fr 0.2fr 0.2fr;
-          align-items: center; }
-          body div#posts-container div.post div div.post-user i.fa-user {
-            background-color: #002558;
-            padding: 10px;
-            border-radius: 50%;
-            color: white;
-            margin: 10px; }
-          body div#posts-container div.post div div.post-user span {
-            font-weight: 600;
-            color: #050591; }
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          cursor: default; }
+          body div#posts-container div.post div div.post-user a {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-decoration: none; }
+            body div#posts-container div.post div div.post-user a:hover span {
+              color: blue;
+              text-decoration: underline; }
+            body div#posts-container div.post div div.post-user a div.user-avatar {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+              overflow: hidden;
+              margin: 5px; }
+              body div#posts-container div.post div div.post-user a div.user-avatar img {
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                object-fit: cover; }
+            body div#posts-container div.post div div.post-user a span {
+              font-weight: 600;
+              color: #050591; }
           body div#posts-container div.post div div.post-user div {
-            position: relative;
-            left: -10px; }
-            body div#posts-container div.post div div.post-user div a {
-              text-decoration: none;
-              color: #002558; }
+            width: 40%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly; }
+            body div#posts-container div.post div div.post-user div div {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-evenly; }
+              body div#posts-container div.post div div.post-user div div a {
+                display: inline-block;
+                color: #002558; }
         body div#posts-container div.post div p.post-text {
+          cursor: default;
           max-height: 150px;
           overflow: scroll;
           overflow-x: hidden;

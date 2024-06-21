@@ -1,28 +1,228 @@
 body {
-  background-color: blanchedalmond;
-  text-align: center; }
-  body div#top-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  background-color: #ececf8; }
+  body main {
+    flex-shrink: 1;
+    width: 77%;
+    overflow: scroll; }
+    body main div#top-container {
+      position: relative;
+      height: 48vh;
+      background-image: url(../images/social_background.jpg);
+      background-size: cover;
+      background-attachment: fixed;
+      text-align: right; }
+      body main div#top-container div#avatar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden; }
+        body main div#top-container div#avatar img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; }
+      body main div#top-container p {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: transparent;
+        font-size: 3.5rem;
+        color: #d4ff00;
+        margin: 0px 10px 40px 0px; }
+        body main div#top-container p#about {
+          font-size: 1.5rem;
+          font-family: "Bookman Old Style"; }
+          body main div#top-container p#about span {
+            font-size: 2rem;
+            font-family: "Consolas", monospace; }
+        body main div#top-container p span {
+          color: white;
+          text-transform: capitalize;
+          font-size: 5rem;
+          margin: 20px;
+          font-family: "Monotype Corsiva", cursive; }
+    body main div nav {
+      position: sticky;
+      top: 0px;
+      z-index: 1;
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+      body main div nav p {
+        color: #002558;
+        font-size: 1.1rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        position: relative;
+        margin: 10px 20px 0px 20px;
+        padding: 10px 15px;
+        border-radius: 10px 10px 0px 0px;
+        cursor: default; }
+  body section {
+    flex-shrink: 1.5;
+    width: 23%;
+    height: 100%;
+    background-color: rgba(184, 85, 85, 0.662); }
+
+div.post-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.2rem; }
+  div.post-container div.post {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 20px;
-    margin: 5px;
-    border-radius: 5px;
-    background-color: #ddf4ae;
+    align-items: center;
+    position: relative;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: ghostwhite;
+    margin: 20px;
+    padding: 20px 30px;
     box-sizing: border-box;
-    font-size: 1.3rem; }
-
-img {
-  width: 200px;
-  border-radius: 50%; }
-
-.welcome {
-  font-size: 5rem; }
-
-button {
-  font-size: 1.5rem;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 2px solid #863030;
-  cursor: pointer; }
+    border-radius: 10px;
+    width: 45%;
+    box-shadow: 3px 3px 10px 5px rgba(83, 96, 152, 0.112);
+    max-height: 370px; }
+    div.post-container div.post div {
+      width: 100%;
+      overflow: scroll; }
+      div.post-container div.post div::-webkit-scrollbar {
+        display: none; }
+      div.post-container div.post div div.post-user {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default; }
+        div.post-container div.post div div.post-user a {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          text-decoration: none; }
+          div.post-container div.post div div.post-user a:hover span {
+            color: blue;
+            text-decoration: underline; }
+          div.post-container div.post div div.post-user a div.user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 5px; }
+            div.post-container div.post div div.post-user a div.user-avatar img {
+              width: 100%;
+              height: 100%;
+              background-position: center;
+              object-fit: cover; }
+          div.post-container div.post div div.post-user a span {
+            font-weight: 600;
+            color: #050591; }
+        div.post-container div.post div div.post-user div {
+          width: 40%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-evenly; }
+          div.post-container div.post div div.post-user div div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly; }
+            div.post-container div.post div div.post-user div div a {
+              display: inline-block;
+              color: #002558; }
+      div.post-container div.post div p.post-text {
+        cursor: default;
+        max-height: 150px;
+        overflow: scroll;
+        overflow-x: hidden;
+        width: 100%; }
+        div.post-container div.post div p.post-text::-webkit-scrollbar {
+          background-color: #c2c2c2;
+          border-radius: 4px;
+          width: 5px; }
+        div.post-container div.post div p.post-text::-webkit-scrollbar-thumb {
+          background-color: #002558;
+          border-radius: 8px; }
+      div.post-container div.post div a.delete-link {
+        font-size: 1rem;
+        padding: 8px 12px;
+        background-color: #002558;
+        color: white;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        border-radius: 50%; }
+        div.post-container div.post div a.delete-link:hover {
+          transform: scale(1.2); }
+      div.post-container div.post div button.comment-btn {
+        background-color: #002558;
+        color: white;
+        border: none;
+        padding: 6px 5px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        margin: 5px; }
+        div.post-container div.post div button.comment-btn:hover {
+          cursor: pointer; }
+        div.post-container div.post div button.comment-btn:active {
+          transform: scale(0.96); }
+        div.post-container div.post div button.comment-btn i {
+          margin: 0px 10px; }
+          div.post-container div.post div button.comment-btn i.fa-caret-down {
+            margin-left: 20px; }
+      div.post-container div.post div div.comment-container {
+        display: none; }
+        div.post-container div.post div div.comment-container div.comment {
+          margin: 10px 0px;
+          border-radius: 10px;
+          background-color: #d5d5e0; }
+          div.post-container div.post div div.comment-container div.comment div {
+            background-color: #002558;
+            display: grid;
+            grid-template-columns: 0.1fr 0.8fr 0.1fr;
+            align-items: center;
+            padding: 5px; }
+            div.post-container div.post div div.comment-container div.comment div i {
+              justify-self: center;
+              padding: 7px;
+              border-radius: 50%;
+              background-color: white;
+              color: #002558; }
+            div.post-container div.post div div.comment-container div.comment div span {
+              color: white; }
+          div.post-container div.post div div.comment-container div.comment p {
+            margin: 5px; }
+    div.post-container div.post form {
+      position: relative;
+      bottom: -10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px; }
+      div.post-container div.post form textarea {
+        padding: 5px;
+        outline: none;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        border: none;
+        border-bottom: 3px solid #002558;
+        overflow: scroll; }
+        div.post-container div.post form textarea::-webkit-scrollbar {
+          display: none; }
+      div.post-container div.post form button {
+        font-size: 1.13rem;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        color: #002558; }
+        div.post-container div.post form button i:hover {
+          transform: scale(1.2); }
