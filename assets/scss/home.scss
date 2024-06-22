@@ -243,18 +243,19 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            gap: 10px;
+            gap: 20px;
             overflow: scroll;
             &::-webkit-scrollbar {
                 display: none;
             }
-            div.message{
+            div.message {
+                position: relative;
                 max-width: 80%;
                 border-radius: 5px;
                 padding: 7px 10px;
-                p{
+                p {
                     font-size: 1rem;
-                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
                     margin: 0px;
                 }
             }
@@ -313,12 +314,32 @@ body {
 //     border-radius: 5px;
 //     background-color: yellow;
 // }
-.other{
+.other {
     align-self: flex-start;
     background-color: #44628c;
     color: white;
+    p.name {
+        font-size: 0.8rem !important;
+        color: orange;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
 }
-.my{
+.my {
     align-self: flex-end;
     background-color: #c4d4e9;
+    p.name {
+        font-size: 0.8rem !important;
+        color: #009e54;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+}
+
+p.time {
+    font-size: 0.7rem !important;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    position:absolute;
+    bottom: -15px;
+    right: 0px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
 }

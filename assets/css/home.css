@@ -195,17 +195,18 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 10px;
+      gap: 20px;
       overflow: scroll; }
       body div#chat-box div#messages::-webkit-scrollbar {
         display: none; }
       body div#chat-box div#messages div.message {
+        position: relative;
         max-width: 80%;
         border-radius: 5px;
         padding: 7px 10px; }
         body div#chat-box div#messages div.message p {
           font-size: 1rem;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
           margin: 0px; }
     body div#chat-box form {
       position: absolute;
@@ -252,7 +253,24 @@ body {
   align-self: flex-start;
   background-color: #44628c;
   color: white; }
+  .other p.name {
+    font-size: 0.8rem !important;
+    color: orange;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; }
 
 .my {
   align-self: flex-end;
   background-color: #c4d4e9; }
+  .my p.name {
+    font-size: 0.8rem !important;
+    color: #009e54;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; }
+
+p.time {
+  font-size: 0.7rem !important;
+  color: black;
+  text-align: right;
+  position: absolute;
+  bottom: -15px;
+  right: 0px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important; }

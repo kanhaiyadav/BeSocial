@@ -1,13 +1,14 @@
 //The client has to request for the connection first always
 class ChatEngine {
-    constructor(chatBoxId, userEmail) {
+    constructor(chatBoxId, userName) {
         this.chatBox = $(`#${chatBoxId}`);
-        this.userEmail = userEmail;
+        // this.userEmail = user.email;
+        this.userName = userName;
         //this line is sending (or emmitting) a connection request to the socket server(to chat_socket.js file)
         //once the connection is acknowledged by the server, connect event occurs the socket in the next line represents
         //connection with the server(note the connect event is handled by connectionHandler())
         this.socket = io.connect('http://localhost:5000');
-        if (this.userEmail) {
+        if (this.userName) {
             this.connectionHandler();
         }
     }
@@ -23,12 +24,12 @@ class ChatEngine {
             //as already said socket represents the individual connection of client with the server
             //now we send the request to join the chatroom
             self.socket.emit('join_room', {
-                user_email: self.userEmail,
+                user_name: self.userName,
                 chatroom: 'codeial'
             })
 
             self.socket.on('user_joined', (data) => {
-                console.log(`user with email ${data.user_email} joined`);
+                console.log(`user with email ${data.user_name} joined`);
             })
         })
 
@@ -39,22 +40,27 @@ class ChatEngine {
 
             self.socket.emit('send_message', {
                 message: msg,
-                user_email: self.userEmail,
+                // user_email: self.userEmail,
+                user_name: self.userName,
                 chatroom: 'codeial'
             })
         })
         self.socket.on('receive_message', function (data) {
             console.log('message received', data.message);
             let message = document.createElement('div');
-            if (data.user_email == self.userEmail) {
+            if (data.user_name == self.userName) {
                 message.setAttribute('class', 'my message');
             }
             else {
                 message.setAttribute('class', 'other message');
             }
-            message.innerHTML = `<p>${data.message}</p>`;
-
-            document.querySelector('#messages').appendChild(message);
+            message.innerHTML = `
+            <p class='name'>${data.user_name}</p>
+            <p>${data.message}</p>
+            <p class='time'>${new Date().toLocaleTimeString()}</p>`;
+            let messageContainer = document.querySelector('#messages');
+            messageContainer.appendChild(message);
+            messageContainer.scrollTop = messageContainer.scrollHeight;
         })
     }
 }
