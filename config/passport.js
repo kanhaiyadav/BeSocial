@@ -47,12 +47,7 @@ passport.setAuthenticatedUser = async function (req, res, next) {
     console.log("******i am called******");
     if (req.isAuthenticated()) {
         console.log("******yessssss i am called******");
-      res.locals.user = await req.user.populate({
-        path: "posts",
-        populate: {
-          path: "comments",
-          },
-      });
+      res.locals.user = await req.user;
   }
   next();
 }

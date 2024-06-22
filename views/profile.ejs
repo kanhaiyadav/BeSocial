@@ -14,10 +14,10 @@
     <main>
         <div id="top-container">
             <div id="avatar">
-                <img src="<%=req_user.avatar %>" alt="">
+                <img src="<%=post_user.avatar %>" alt="">
             </div>
             <p>Hey,</p>
-            <p>I'm <span><%=req_user.name %></span></p>
+            <p>I'm <span><%=post_user.name %></span></p>
             <p id="about"><span>"</span>this is the about section here users will write briefly about themselves<span>"</span></p>
         </div>
         <div>
@@ -27,9 +27,10 @@
                 <p id="disliked">Disliked Posts</p>
                 <p id="saved">Saved Posts</p>
             </nav>
-            <div id="posts-container" class="post-container">
-                
-            </div>
+            
+            <!-- post container -->
+             <%-include('_post_container.ejs') %>
+
             <div id="liked-posts-container" class="post-container">
     
             </div>
@@ -46,6 +47,7 @@
 
 
   <script type="text/javascript" src="../js/profile.js"></script>
+  <script type="text/javascript" src="../js/post.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,101 @@
+<div id="posts-container">
+    <%for(let post of posts){%>
+        <div id="post-<%=post._id%>" class="post">
+
+            <div>
+
+                <div class="post-user">
+
+                    <a href="/profile/<%=post.user._id%>" target="_blank">
+                        <div class="user-avatar">
+                            <img src="<%=post.user.avatar %>" alt="">
+                        </div>
+                        <span>
+                            <% if(locals.user.id===post.user.id) {%>
+                                YOU
+                                <% }else{ %>
+                                    @<%=post.user.name%>
+                                        <% } %>
+                        </span>
+                    </a>
+                    <div>
+                        <div>
+                            <% if(!(locals.user.id===post.user.id)) {%>
+                                <a href="/user/like/?objectId=<%=post._id %>&objectType=Post">
+                                    <%if(post.isLiked){ %>
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <% } else { %>
+                                            <i class="fa-regular fa-thumbs-up"></i>
+                                            <% } %>
+                                </a>
+                                <% } else{%>
+                                    <i class="fa-solid fa-thumbs-up" style="color: #c7c7c7;font-style: italic;"></i>
+                                    <% } %>
+                                        <span>
+                                            <%=post.likesCount %>
+                                        </span>
+                        </div>
+                        <div>
+                            <% if(!(locals.user.id===post.user.id)) {%>
+                                <a href="/user/dislike/?objectId=<%=post._id%>&objectType=Post">
+                                    <%if(post.isDisliked){ %>
+                                        <i class="fa-solid fa-thumbs-down"></i>
+                                        <% } else { %>
+                                            <i class="fa-regular fa-thumbs-down"></i>
+                                            <% } %>
+                                </a>
+                                <% } else{%>
+                                    <i class="fa-solid fa-thumbs-down" style="color: #c7c7c7;font-style: italic;"></i>
+                                    <% } %>
+                                        <span>
+                                            <%=post.dislikesCount %>
+                                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="post-text">
+                    <%=post.content%>
+                </p>
+
+                <% if(locals.user && locals.user.id==post.user.id) {%>
+                    <a class="delete-link" href="/post/destroy/<%=post._id%>"><i class="fa-solid fa-trash-can"></i></a>
+                    <% } %>
+
+                        <button class="comment-btn" type="button"><i class="fa-solid fa-message"></i>Comments<i
+                                class="fa-solid fa-caret-down"></i></button>
+
+                        <div id="comments-container-<%=post._id %>" class="comment-container">
+                            <% for(comment of post.comments){ %>
+                                <div id="comment-<%=comment._id %>" class="comment">
+                                    <div>
+                                        <i class="fa-solid fa-user"></i><span>@<%=comment.user.name %></span>
+                                        <% if(locals.user && (locals.user.id==comment.user.id ||
+                                            post.user.id==locals.user.id)){%>
+                                            <a class="comment-delete-link" href="/comment/destroy/<%=comment._id%>">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </a>
+                                            <% } %>
+                                    </div>
+                                    <p>
+                                        <%=comment.content%>
+                                    </p>
+                                </div>
+                                <% } %>
+                        </div>
+
+            </div>
+
+
+            <% if(!(locals.user.id===post.user.id)) {%>
+                <form class="comment-form" action="/comment/create" method="post">
+                    <textarea name="content" cols="45" rows="1" placeholder="Add a comment ..." required></textarea>
+                    <input type="hidden" value=<%=post._id%> name="post_id" />
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+                <% }%>
+
+        </div>
+
+        <% } %>
+</div>
