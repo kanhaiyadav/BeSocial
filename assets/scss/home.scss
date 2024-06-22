@@ -42,8 +42,8 @@ body {
             justify-content: space-between;
             align-items: center;
             position: relative;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color:ghostwhite;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: ghostwhite;
             margin: 20px;
             padding: 20px 30px;
             box-sizing: border-box;
@@ -51,10 +51,10 @@ body {
             width: 30%;
             box-shadow: 3px 3px 10px 5px rgba(83, 96, 152, 0.112);
             max-height: 370px;
-            div{
+            div {
                 width: 100%;
                 overflow: scroll;
-                &::-webkit-scrollbar{
+                &::-webkit-scrollbar {
                     display: none;
                 }
 
@@ -65,71 +65,71 @@ body {
                     justify-content: space-between;
                     align-items: center;
                     cursor: default;
-                    a{
+                    a {
                         display: flex;
                         flex-direction: row;
                         align-items: center;
                         text-decoration: none;
 
-                        &:hover span{
+                        &:hover span {
                             color: blue;
                             text-decoration: underline;
                         }
-                        div.user-avatar{
+                        div.user-avatar {
                             width: 35px;
                             height: 35px;
                             border-radius: 50%;
                             overflow: hidden;
                             margin: 5px;
-                            img{
+                            img {
                                 width: 100%;
                                 height: 100%;
                                 background-position: center;
                                 object-fit: cover;
                             }
                         }
-                        span{
+                        span {
                             font-weight: 600;
                             color: rgb(5, 5, 145);
                         }
                     }
-                    div{
+                    div {
                         width: 40%;
                         display: flex;
                         flex-direction: row;
                         align-items: center;
                         justify-content: space-evenly;
-                        div{
+                        div {
                             display: flex;
                             flex-direction: row;
                             align-items: center;
                             justify-content: space-evenly;
-                            a{
+                            a {
                                 display: inline-block;
                                 color: #002558;
                             }
                         }
                     }
                 }
-                p.post-text{
+                p.post-text {
                     cursor: default;
                     max-height: 150px;
                     overflow: scroll;
                     overflow-x: hidden;
                     width: 100%;
                     // scrollbar-width:thin;
-                    &::-webkit-scrollbar{
+                    &::-webkit-scrollbar {
                         background-color: rgb(194, 194, 194);
                         border-radius: 4px;
                         width: 5px;
                     }
-                    
-                    &::-webkit-scrollbar-thumb{
+
+                    &::-webkit-scrollbar-thumb {
                         background-color: #002558;
                         border-radius: 8px;
                     }
                 }
-                a.delete-link{
+                a.delete-link {
                     font-size: 1rem;
                     padding: 8px 12px;
                     background-color: #002558;
@@ -138,11 +138,11 @@ body {
                     top: -10px;
                     right: -10px;
                     border-radius: 50%;
-                    &:hover{
+                    &:hover {
                         transform: scale(1.2);
                     }
                 }
-                button.comment-btn{
+                button.comment-btn {
                     background-color: rgb(0, 37, 88);
                     color: white;
                     border: none;
@@ -156,52 +156,51 @@ body {
                     &:active {
                         transform: scale(0.96);
                     }
-                    i{
-                        margin:0px 10px;
-                        &.fa-caret-down{
+                    i {
+                        margin: 0px 10px;
+                        &.fa-caret-down {
                             margin-left: 20px;
                         }
                     }
                 }
-                div.comment-container{
+                div.comment-container {
                     display: none;
-                    div.comment{
+                    div.comment {
                         margin: 10px 0px;
                         border-radius: 10px;
-                            background-color: rgb(213, 213, 224);
+                        background-color: rgb(213, 213, 224);
 
-                        div{
+                        div {
                             background-color: #002558;
                             display: grid;
                             grid-template-columns: 0.1fr 0.8fr 0.1fr;
                             align-items: center;
                             padding: 5px;
-                            i{
+                            i {
                                 justify-self: center;
                                 padding: 7px;
                                 border-radius: 50%;
                                 background-color: white;
                                 color: rgb(0, 37, 88);
                             }
-                            span{
+                            span {
                                 color: white;
                             }
                         }
-                        p{
+                        p {
                             margin: 5px;
                         }
-
                     }
                 }
             }
-            form{
+            form {
                 position: relative;
                 bottom: -10px;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 gap: 10px;
-                textarea{
+                textarea {
                     padding: 5px;
                     outline: none;
                     font-size: 0.9rem;
@@ -209,24 +208,88 @@ body {
                     border: none;
                     border-bottom: 3px solid rgb(0, 37, 88);
                     overflow: scroll;
-                    &::-webkit-scrollbar{
+                    &::-webkit-scrollbar {
                         display: none;
                     }
                 }
-                button{
+                button {
                     font-size: 1.13rem;
                     background-color: transparent;
                     outline: none;
                     border: none;
                     color: rgb(0, 37, 88);
-                    i{
-                        &:hover{
+                    i {
+                        &:hover {
                             transform: scale(1.2);
                         }
                     }
                 }
             }
-            
+        }
+    }
+    div#chat-box {
+        background-color: ghostwhite;
+        border-radius: 10px;
+        height: 300px;
+        width: 280px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px;
+        box-shadow: 3px 3px 6px 3px rgba(83, 96, 152, 0.2);
+        div#messages {
+            height: 89%;
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 10px;
+            overflow: scroll;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            div.message{
+                max-width: 80%;
+                border-radius: 5px;
+                padding: 7px 10px;
+                p{
+                    font-size: 1rem;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    margin: 0px;
+                }
+            }
+        }
+        form {
+            position: absolute;
+            bottom: 10px;
+            width: 280px;
+            height: 10%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+            textarea {
+                outline: none;
+                border: none;
+                border-bottom: 3px solid rgb(0, 37, 88);
+                padding: 5px;
+                font-size: 1rem;
+                border-radius: 5px;
+                flex-grow: 1;
+                flex-shrink: 1;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+            button {
+                border: none;
+                font-size: 1rem;
+                background-color: #002558;
+                color: white;
+                border-radius: 5px;
+                padding: 5px;
+            }
         }
     }
 }
@@ -244,4 +307,18 @@ body {
     &:active {
         transform: scale(0.96);
     }
+}
+// .message{
+//     width: 20px;
+//     border-radius: 5px;
+//     background-color: yellow;
+// }
+.other{
+    align-self: flex-start;
+    background-color: #44628c;
+    color: white;
+}
+.my{
+    align-self: flex-end;
+    background-color: #c4d4e9;
 }

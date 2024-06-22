@@ -9,11 +9,20 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require('connect-flash');
 const middleware = require('./config/middleware.js');
+const cors = require('cors');
 
-
+app.use(cors());
 const port = 8000;
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
+
+//setting up web sokets for chat
+const chatServer = require('http').Server(app);
+const chatSocket = require('./config/chat_socket.js').chatSocket(chatServer);
+chatServer.listen(5000);
+console.log("chat server is running on port 5000");
+
 
 app.use(
   sassMiddleware({

@@ -96,9 +96,9 @@
                                             <i class="fa-solid fa-user"></i><span>@<%=comment.user.name %></span>
                                             <% if(locals.user && (locals.user.id==comment.user.id ||
                                                 post.user.id==locals.user.id)){%>
-                                                <a class="comment-delete-link"
-                                                    href="/comment/destroy/<%=comment._id%>"><i
-                                                        class="fa-solid fa-trash-can"></i></a>
+                                                <a class="comment-delete-link" href="/comment/destroy/<%=comment._id%>">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </a>
                                                 <% } %>
                                         </div>
                                         <p>
@@ -123,8 +123,25 @@
 
             <% } %>
     </div>
+    <div id="chat-box">
+        <div id="messages">
+        </div>
+        <form action="" id="message-form">
+            <textarea type="textarea" name="content"  rows="1" placeholder="Type a message..."></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"
+        integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="../js/chat_engine.js"></script>
     <script type="text/javascript" src="../js/home.js"></script>
+    <%if(locals.user){%>
+    <script>
+        new ChatEngine('chat-box', '<%=locals.user.email%>');
+    </script>
+    <%}%>
 </body>
 
 </html>

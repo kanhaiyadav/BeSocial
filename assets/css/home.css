@@ -35,7 +35,7 @@ body {
       justify-content: space-between;
       align-items: center;
       position: relative;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background-color: ghostwhite;
       margin: 20px;
       padding: 20px 30px;
@@ -179,6 +179,62 @@ body {
           color: #002558; }
           body div#posts-container div.post form button i:hover {
             transform: scale(1.2); }
+  body div#chat-box {
+    background-color: ghostwhite;
+    border-radius: 10px;
+    height: 300px;
+    width: 280px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    box-shadow: 3px 3px 6px 3px rgba(83, 96, 152, 0.2); }
+    body div#chat-box div#messages {
+      height: 89%;
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
+      overflow: scroll; }
+      body div#chat-box div#messages::-webkit-scrollbar {
+        display: none; }
+      body div#chat-box div#messages div.message {
+        max-width: 80%;
+        border-radius: 5px;
+        padding: 7px 10px; }
+        body div#chat-box div#messages div.message p {
+          font-size: 1rem;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          margin: 0px; }
+    body div#chat-box form {
+      position: absolute;
+      bottom: 10px;
+      width: 280px;
+      height: 10%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px; }
+      body div#chat-box form textarea {
+        outline: none;
+        border: none;
+        border-bottom: 3px solid #002558;
+        padding: 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        flex-grow: 1;
+        flex-shrink: 1; }
+        body div#chat-box form textarea::-webkit-scrollbar {
+          display: none; }
+      body div#chat-box form button {
+        border: none;
+        font-size: 1rem;
+        background-color: #002558;
+        color: white;
+        border-radius: 5px;
+        padding: 5px; }
 
 .sub-btn {
   background-color: #002558;
@@ -191,3 +247,12 @@ body {
     cursor: pointer; }
   .sub-btn:active {
     transform: scale(0.96); }
+
+.other {
+  align-self: flex-start;
+  background-color: #44628c;
+  color: white; }
+
+.my {
+  align-self: flex-end;
+  background-color: #c4d4e9; }
