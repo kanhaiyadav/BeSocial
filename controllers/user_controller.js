@@ -5,6 +5,13 @@ const Like = require("../models/like");
 const Dislike = require("../models/dislike");
 const fs = require("fs"); //   fs.unlinkSync(path.join(__dirname, "..",user.avatar));
 const path = require('path');
+const Like_mailer = require("../mailers/like_mailer.js");
+
+//implementing delayed jobs
+const queue = require('../config/kue');
+const like_email_worker = require('../workers/Like_email_worker.js');
+
+
 module.exports.signup = function (req, res) {
     if (!req.isAuthenticated()) return res.render("signup");
     else res.redirect("back");
@@ -20,8 +27,7 @@ module.exports.create = async function (req, res) {
         if (!user) {
             try {
                 // User.uploadedAvatar(req, res);
-                if (req.file)
-                {
+                if (req.file) {
                     await User.create({
                         email: req.body.email,
                         password: req.body.password,
@@ -32,7 +38,7 @@ module.exports.create = async function (req, res) {
                 }
                 else
                     return res.redirect("back");
-                    
+
             } catch (err) {
                 console.log("error in creating user while signing up", err);
                 return;
@@ -55,16 +61,15 @@ module.exports.signout = async (req, res) => {
     req.logout((err) => {
         if (err) console.log(err);
     });
-    
+
     req.flash("success", "Logged out successfully");
     res.redirect("/unknown");
 }
 
 module.exports.like = async (req, res) => {
     try {
-        
-        if (req.query.objectType == "Post")
-        {
+
+        if (req.query.objectType == "Post") {
             let post = await Post.findById(req.query.objectId);
             let like = await Like.findOne({ user: req.user._id, on: req.query.objectId });
             if (like) {
@@ -86,6 +91,14 @@ module.exports.like = async (req, res) => {
                     on: req.query.objectId,
                     onModel: req.query.objectType
                 });
+                let job = queue.create('emails', await User.findById(post.user)).save(function (err) {
+                    if (err) {
+                        console.log('***Error*** in pushing job to the queue')
+                        console.log(err);
+                    }
+                    console.log('job enqueued');
+                });
+
                 return res.status(200).json({
                     data: {
                         likesCount: post.likesCount
@@ -146,7 +159,7 @@ module.exports.dislike = async (req, res) => {
 
 module.exports.getPosts = async (req, res) => {
     try {
-        
+
         let posts = await Post.find({ user: req.user._id }).populate('user').populate({
             path: 'comments',
             populate: {
